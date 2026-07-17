@@ -57,6 +57,7 @@ function addPenalty(){
         <input
             type="text"
             placeholder="Reason"
+            class="penaltyReason"
         >
 
         <input
@@ -142,6 +143,139 @@ function attachListeners(){
 attachListeners();
 
 calculateTotals();
+
+
+// =========================
+// SAVE PDF
+// =========================
+
 function savePDF() {
-    window.print();
+
+    const { jsPDF } = window.jspdf;
+
+    const doc = new jsPDF();
+
+    let y = 20;
+
+    doc.setFont("helvetica","bold");
+    doc.setFontSize(20);
+    doc.text("TiAmo Relaxation Spa",20,y);
+
+    y += 10;
+
+    doc.setFontSize(15);
+    doc.text("Therapist Service Invoice",20,y);
+
+    y += 15;
+
+    doc.setFont("helvetica","normal");
+    doc.setFontSize(11);
+
+    doc.text("Invoice #: " + document.getElementById("invoice").value,20,y);
+
+    y += 8;
+
+    doc.text("Date: " + document.getElementById("date").value,20,y);
+
+    y += 8;
+
+    doc.text("Therapist: " + document.getElementById("therapist").value,20,y);
+
+    y += 8;
+
+    doc.text("Payment Week: " + document.getElementById("week").value,20,y);
+
+    y += 15;
+
+    doc.setFont("helvetica","bold");
+    doc.text("Commission Earned",20,y);
+
+    y += 8;
+
+    document.querySelectorAll("#days tr").forEach(row=>{
+
+        const day = row.cells[0].innerText;
+        const amount = row.querySelector("input").value || 0;
+
+        doc.setFont("helvetica","normal");
+        doc.text(day + ": R " + amount,25,y);
+
+        y += 7;
+
+    });
+
+    y += 5;
+
+    doc.setFont("helvetica","bold");
+    doc.text("Deductions",20,y);
+
+    y += 8;
+
+    doc.setFont("helvetica","normal");
+
+    doc.text("Levy: R " + document.getElementById("levy").value,25,y);
+
+    y += 7;
+
+    doc.text("Ads: R " + document.getElementById("ads").value,25,y);
+
+    y += 12;
+
+    doc.setFont("helvetica","bold");
+    doc.text("Penalties",20,y);
+
+    y += 8;
+
+    const penaltyRows = document.querySelectorAll(".pen");
+
+    if(penaltyRows.length===0){
+
+        doc.setFont("helvetica","normal");
+        doc.text("None",25,y);
+
+        y += 7;
+
+    }else{
+
+        penaltyRows.forEach(row=>{
+
+            const date = row.children[0].value;
+            const reason = row.children[1].value;
+            const amount = row.children[2].value;
+
+            doc.setFont("helvetica","normal");
+            doc.text(date + " | " + reason + " | R " + amount,25,y);
+
+            y += 7;
+
+        });
+
+    }
+
+    y += 10;
+
+    doc.setFont("helvetica","bold");
+
+    doc.text("Total Commission: R " + document.getElementById("tc").innerText,20,y);
+
+    y += 8;
+
+    doc.text("Total Deductions: R " + document.getElementById("td").innerText,20,y);
+
+    y += 8;
+
+    doc.text("Total Penalties: R " + document.getElementById("tp").innerText,20,y);
+
+    y += 8;
+
+    doc.setFontSize(16);
+
+    doc.text("NET PAYABLE: R " + document.getElementById("net").innerText,20,y);
+
+    const therapist = document.getElementById("therapist").value || "Therapist";
+
+    const invoice = document.getElementById("invoice").value;
+
+    doc.save(`Invoice-${therapist}-${invoice}.pdf`);
+
 }
