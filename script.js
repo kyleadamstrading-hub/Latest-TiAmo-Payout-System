@@ -142,3 +142,6 @@ function attachListeners(){
 attachListeners();
 
 calculateTotals();
+function savePDF() {
+    window.print();
+}
