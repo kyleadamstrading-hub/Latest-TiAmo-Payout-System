@@ -1,1 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TiAmo Therapist Invoice</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+<h1>TiAmo Relaxation Spa</h1>
+<h2>Therapist Service Invoice</h2>
 
+<div class="grid">
+<div><label>Date</label><input type="date" id="date"></div>
+<div><label>Invoice #</label><input id="invoice" readonly></div>
+<div><label>Therapist</label><input id="therapist"></div>
+<div><label>Week</label><input id="week"></div>
+</div>
+
+<h3>Commission</h3>
+<table>
+<tr><th>Day</th><th>Amount (R)</th></tr>
+<tbody id="days"></tbody>
+</table>
+
+<label>Advance / Cash Out Notes</label>
+<textarea></textarea>
+
+<h3>Deductions</h3>
+<div class="grid">
+<div><label>Levy</label><input type="number" id="levy" value="0"></div>
+<div><label>Ads</label><input type="number" id="ads" value="0"></div>
+</div>
+
+<h3>Penalties</h3>
+<div id="penalties"></div>
+<button onclick="addPenalty()">+ Add Penalty</button>
+
+<h2>Summary</h2>
+<p>Total Commission: R <span id="tc">0.00</span></p>
+<p>Total Deductions: R <span id="td">0.00</span></p>
+<p>Total Penalties: R <span id="tp">0.00</span></p>
+<h2>Net Payable: R <span id="net">0.00</span></h2>
+
+<button onclick="window.print()">Print / Save PDF</button>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
