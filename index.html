@@ -106,9 +106,7 @@ value="0">
 <div id="penalties"></div>
 
 <button onclick="addPenalty()">
-
 + Add Penalty
-
 </button>
 
 <hr>
@@ -116,35 +114,23 @@ value="0">
 <h2>Invoice Summary</h2>
 
 <p>
-
 <strong>Total Commission:</strong>
-
 R <span id="tc">0.00</span>
-
 </p>
 
 <p>
-
 <strong>Total Deductions:</strong>
-
 R <span id="td">0.00</span>
-
 </p>
 
 <p>
-
 <strong>Total Penalties:</strong>
-
 R <span id="tp">0.00</span>
-
 </p>
 
 <h2>
-
 Net Payable:
-
 R <span id="net">0.00</span>
-
 </h2>
 
 <hr>
@@ -152,9 +138,7 @@ R <span id="net">0.00</span>
 <h3>Declaration</h3>
 
 <p>
-
 I hereby declare that the information supplied above is true and correct and accurately reflects the services rendered during the payment period.
-
 </p>
 
 <br>
@@ -186,19 +170,19 @@ _____________________________
 <br>
 
 <button onclick="window.print()">
-
 🖨 Print Invoice
-
 </button>
 
 <button onclick="savePDF()">
-
 📄 Save as PDF
-
 </button>
 
 </div>
 
+<!-- jsPDF Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<!-- Your Script -->
 <script src="script.js"></script>
 
 </body>
