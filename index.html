@@ -33,7 +33,7 @@
 </div>
 
 <div>
-<label>Payment Week</label>
+<label>Payment Period</label>
 <input id="week" placeholder="Example: 14 - 20 July 2026">
 </div>
 
@@ -41,33 +41,22 @@
 
 <hr>
 
-<h3>Weekly Commission</h3>
+<h3>Commission Earned</h3>
 
-<table>
+<div id="commissionEntries"></div>
 
-<thead>
+<button type="button" onclick="addCommissionEntry()">
++ Add Commission Entry
+</button>
 
-<tr>
-
-<th>Day</th>
-
-<th>Commission Earned (R)</th>
-
-</tr>
-
-</thead>
-
-<tbody id="days">
-
-</tbody>
-
-</table>
-
-<br>
+<hr>
 
 <label>Advance / Cash Out Notes</label>
 
-<textarea placeholder="Example: Advanced R500 on Wednesday"></textarea>
+<textarea 
+id="cashoutNotes"
+placeholder="Example: Advanced R500 on Wednesday">
+</textarea>
 
 <hr>
 
@@ -82,7 +71,9 @@
 <input
 type="number"
 id="levy"
-value="0">
+value="0"
+min="0"
+step="0.01">
 
 </div>
 
@@ -93,7 +84,9 @@ value="0">
 <input
 type="number"
 id="ads"
-value="0">
+value="0"
+min="0"
+step="0.01">
 
 </div>
 
@@ -105,7 +98,7 @@ value="0">
 
 <div id="penalties"></div>
 
-<button onclick="addPenalty()">
+<button type="button" onclick="addPenalty()">
 + Add Penalty
 </button>
 
@@ -169,11 +162,11 @@ _____________________________
 
 <br>
 
-<button onclick="window.print()">
+<button type="button" onclick="window.print()">
 🖨 Print Invoice
 </button>
 
-<button onclick="savePDF()">
+<button type="button" onclick="savePDF()">
 📄 Save as PDF
 </button>
 
